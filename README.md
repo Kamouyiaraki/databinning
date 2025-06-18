@@ -74,13 +74,8 @@ flye --pacbio-hifi ${file}/${file}.fq --out-dir ${file}/single_assembly_out --th
 flye --nano-raw ${file}/${file}.fastq --out-dir ${file}/single_assembly_out --threads 16 --meta
 
 ############################## Flye Nanopore long-read single-sample assembly ##############################
-OPERA-MS.pl \
---short-read1 ${file}_1.fastq \
---short-read2 ${file}_2.fastq \
---num-processors 16 --no-polishing \
---long-read ${long_file}.fastq \
---out-dir ${file}_${long_file}_hybrid_assembly \
---contig-file ${file}/single_assembly_out/final.contigs.fa
+OPERA-MS.pl --short-read1 ${file}_1.fastq --short-read2 ${file}_2.fastq \
+--num-processors 16 --no-polishing --long-read ${long_file}.fastq --out-dir ${file}_${long_file}_hybrid_assembly --contig-file ${file}/single_assembly_out/final.contigs.fa
 ```
 ## Mapping
 * [Bowtie2](https://github.com/BenLangmead/bowtie2) (version 2.5.1) for short reads.
