@@ -59,7 +59,7 @@ Options:
 ## Assembly
 * [Megahit](https://github.com/voutcn/megahit) (version 1.2.9) for short reads.
 * [Flye](https://github.com/fenderglass/Flye) (version 2.9.2, --meta) for long reads.
-* [metaSPAdes](https://github.com/CSB5/OPERA-MS) (version 0.9.0, --no-polishing) for hybrid data.
+* [OPERA-MS](https://github.com/CSB5/OPERA-MS) (version 0.9.0, --no-polishing) for hybrid data.
 ```
 ############################## Megahit short-read single-sample assembly ##############################
 megahit -1 ${file}/${file}_1.fastq -2 ${file}/${file}_2.fastq -t 16 -o ${file}/single_assembly_out
@@ -73,7 +73,7 @@ flye --pacbio-hifi ${file}/${file}.fq --out-dir ${file}/single_assembly_out --th
 ############################## Flye Nanopore long-read single-sample assembly ##############################
 flye --nano-raw ${file}/${file}.fastq --out-dir ${file}/single_assembly_out --threads 16 --meta
 
-############################## Flye Nanopore long-read single-sample assembly ##############################
+############################## OPERA-MS hybrid single-sample assembly ##############################
 OPERA-MS.pl --short-read1 ${file}_1.fastq --short-read2 ${file}_2.fastq \
 --num-processors 16 --no-polishing --long-read ${long_file}.fastq --out-dir ${file}_${long_file}_hybrid_assembly --contig-file ${file}/single_assembly_out/final.contigs.fa
 ```
