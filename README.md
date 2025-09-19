@@ -233,19 +233,19 @@ metadecoder cluster -f ${file}/single_assembly_out/final.contigs_1000.fa -c META
 ############################## Co-assembly binning ##############################
 run_name_list=marine_result
 yaml_list=config_marine.yaml
-binny -l -n ${run_name_list[SLURM_ARRAY_TASK_ID]} -r -t 16 ${yaml_list}
+binny -l -n ${run_name_list} -r -t 16 ${yaml_list}
 
 ############################## Single-sample binning for each sample ##############################
 
 run_name_list=${file}_single_result
 yaml_list=config_${file}_single.yaml
-binny -l -n ${run_name_list[SLURM_ARRAY_TASK_ID]} -r -t 16 ${yaml_list}
+binny -l -n ${run_name_list} -r -t 16 ${yaml_list}
 
 ############################## Multi-sample binning for each sample ##############################
 
 run_name_list=${file}_multi_result
 yaml_list=config_${file}_multi.yaml
-binny -l -n ${run_name_list[SLURM_ARRAY_TASK_ID]} -r -t 16 ${yaml_list}
+binny -l -n ${run_name_list} -r -t 16 ${yaml_list}
 ```
 ### [MetaBinner](https://github.com/ziyewang/MetaBinner) (version 1.4.4)
 ```
