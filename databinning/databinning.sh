@@ -3,8 +3,9 @@
 ##############################################################################################################################################################
 # Author of pipeline: Haitao Han.
 # For questions, bugs, and suggestions, contact me at htaohan@163.com
+# Edited to use BAM files for MetaDecoder (latest version only accepts BAM files and no longer accepts SAM files)
 ##############################################################################################################################################################
-VERSION="1.0.0"
+VERSION="1.0.1"
 
 help_message () {
   echo ""
@@ -89,10 +90,10 @@ case ${binner} in
 #            echo "Error: For mode 'metabat', both -a <file> and -b <dir> are required."
 #            help_message
 #        fi
-        echo "Executing MetaDecoder with threads ${threads} contigfile ${contig_file} samfile ${sam_files}"
+        echo "Executing MetaDecoder with threads ${threads} contigfile ${contig_file} bamfile ${bam_files}"
         mkdir -p ${output_dir}/bins_dir
         cd ${output_dir}
-        metadecoder coverage --threads ${threads} -s ${sam_files}  -o METADECODER_gsa.COVERAGE
+        metadecoder coverage --threads ${threads} -s ${bam_files}  -o METADECODER_gsa.COVERAGE
         metadecoder seed --threads ${threads} -f ${contig_file} -o METADECODER_gsa.SEED
         metadecoder cluster -f ${contig_file} -c METADECODER_gsa.COVERAGE -s METADECODER_gsa.SEED -o bins_dir/METADECODER
         ;;
@@ -160,10 +161,10 @@ case ${binner} in
         metabat2 -t ${threads} -i ${contig_file} -a depth.txt -o bins_dir/bin
 
         ##run metadecoder
-        echo "Executing MetaDecoder with threads ${threads} contigfile ${contig_file} samfile ${sam_files}"
+        echo "Executing MetaDecoder with threads ${threads} contigfile ${contig_file} samfile ${bam_files}"
         mkdir -p ${output_dir}/metadecoder_result/bins_dir
         cd ${output_dir}/metadecoder_result
-        metadecoder coverage --threads ${threads} -s ${sam_files}  -o METADECODER_gsa.COVERAGE
+        metadecoder coverage --threads ${threads} -s ${bam_files}  -o METADECODER_gsa.COVERAGE
         metadecoder seed --threads ${threads} -f ${contig_file} -o METADECODER_gsa.SEED
         metadecoder cluster -f ${contig_file} -c METADECODER_gsa.COVERAGE -s METADECODER_gsa.SEED -o bins_dir/METADECODER
 
